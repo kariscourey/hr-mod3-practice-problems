@@ -44,5 +44,5 @@ def baby_talk(s):
         window -= 2
     return window
 
-s = 'BABAGOOGOOGOOGOOGOOGOOBA'
+s = 'BABAGOOGOOGOOGOOBA'
 print(baby_talk(s))
