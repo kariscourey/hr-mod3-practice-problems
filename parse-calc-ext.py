@@ -16,10 +16,11 @@
 
 import re
 
-def calc_match(s):
-    s = match.group()
-    parts = s.split(' ')
-    return str(eval(f'{parts[1]} {parts[0][1]} {parts[2]}'))
+def calc_match(match):
+  s = match.group()
+  parts = s.split(' ')
+  return str(eval(f'{parts[1]} {parts[0][1]} {parts[2]}'))
+
 
 def parse_calculation_ext(s):
     while '(' in s:
