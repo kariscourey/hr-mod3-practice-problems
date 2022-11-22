@@ -28,6 +28,19 @@ def does_product_exist(nums, left, right, target):
                 return True
     return False
 
+# def does_product_exist(nums, left, right, target):
+#     i = left
+#     j = i + 1
+#     divs = set()
+#     divs.add(target/nums[i])
+#     while i < right:
+#         if nums[j] in divs:
+#             return True
+#         divs.add(target/nums[j])
+#         i+=1
+#         j+=1
+#     return False
+
 
 nums = [1, 5, 5, 2, 3]
 left = 0
