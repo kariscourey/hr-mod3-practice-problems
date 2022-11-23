@@ -21,13 +21,20 @@
 # [ "tablet", "marble", "docker" ]
 
 def fix_misspellings(corrections):
-    results = []
-    for i in corrections:
-        word = list(i['word'])
-        word.pop(i['position'] - 1)
-        results.append(''.join(word))
-    return results
+    # results = []
+    # for i in corrections:
+    #     word = list(i['word'])
+    #     word.pop(i['position'] - 1)
+    #     results.append(''.join(word))
+    # return results
 
+    fixed = []
+    for correction in corrections:
+        word = correction['word']
+        p = correction['position']
+        fixed_word = word[:p-1] + word[p:]
+        fixed.append(fixed_word)
+    return fixed
 
 corrections = [
     { "word": "tablett", "position": 7 },
