@@ -24,30 +24,44 @@
 #     return list(flows.values())
 #     # return []
 
-def pipe_outputs(num_pipes, steps):
-    flow = [8] * num_pipes
-    for step in steps:
-        if len(step) == 1:
-            flow[step[0] - 1] += flow.pop(step[0])
-        elif len(step) == 2:
-            flow.insert(step[0] - 1, step[1])
-            flow[step[0]] -= step[1]
-    return flow
+# def pipe_outputs(num_pipes, steps):
+#     flow = [8] * num_pipes
+#     for step in steps:
+#         if len(step) == 1:
+#             flow[step[0] - 1] += flow.pop(step[0])
+#         elif len(step) == 2:
+#             flow.insert(step[0] - 1, step[1])
+#             flow[step[0]] -= step[1]
+#     return flow
+
+# def pipe_outputs(num_pipes, steps):
+#     pipes_flow = [8] * num_pipes
+#     for step in steps:
+#         if len(step) == 2:
+#             curr_pipe = step[0] - 1
+#             pipe_left = [step[1]]
+#             pipe_right = [pipes_flow[curr_pipe] - step[1]]
+#             pipes_flow = pipes_flow[:curr_pipe] + pipe_left + pipe_right + pipes_flow[curr_pipe+1:]
+#         else:
+#             curr_pipe = step[0] - 1
+#             new_flow_amount = pipes_flow[curr_pipe] + pipes_flow[curr_pipe+1]
+#             pipes_flow[curr_pipe] = new_flow_amount
+#             pipes_flow.pop(curr_pipe+1)
+#     return pipes_flow
+
 
 def pipe_outputs(num_pipes, steps):
-    pipes_flow = [8] * num_pipes
+    flows = [8] * num_pipes
     for step in steps:
-        if len(step) == 2:
-            curr_pipe = step[0] - 1
-            pipe_left = [step[1]]
-            pipe_right = [pipes_flow[curr_pipe] - step[1]]
-            pipes_flow = pipes_flow[:curr_pipe] + pipe_left + pipe_right + pipes_flow[curr_pipe+1:]
+        pipe_index = step[0] - 1
+        if len(step) == 1:
+            new_flow = flows[pipe_index] + flows[pipe_index + 1]
+            flows[pipe_index:pipe_index + 2] = [new_flow]
         else:
-            curr_pipe = step[0] - 1
-            new_flow_amount = pipes_flow[curr_pipe] + pipes_flow[curr_pipe+1]
-            pipes_flow[curr_pipe] = new_flow_amount
-            pipes_flow.pop(curr_pipe+1)
-    return pipes_flow
+            left = step[1]
+            right = flows[pipe_index] - left
+            flows[pipe_index:pipe_index + 1] = [left, right]
+    return flows
 
 
 num_pipes = 3
