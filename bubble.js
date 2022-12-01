@@ -1,0 +1,30 @@
+// Below is an implementation for bubble-sort in Python.
+
+// Recall that it "bubbles" the next largest value to the end of the list on each iteration of the outer loop.
+
+// def bubble_sort(items):
+//     length = len(items)
+//     for i in range(0, length-1):
+//         for j in range(0, length-(i+1)):
+//             if items[j] > items[j+1]:
+//                 items[j], items[j+1] = items[j+1], items[j]
+//     return items
+// Now implement bubble-sort in JavaScript:
+
+function bubbleSort(items) {
+    let length = items.length;
+    let temp;
+    for (let i=0; i < length - 1; i++) {
+        for (let j=0; j < length - (i + 1); j++) {
+            if (items[j] > items[j+1]) {
+                temp = items[j];
+                items[j] = items[j+1];
+                items[j+1] = temp;
+            }
+        }
+    }
+    return items;
+}
+
+items = [3, 1, 4, 6, 2];
+console.log(bubbleSort(items));
