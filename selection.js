@@ -30,7 +30,7 @@ function selectionSort(items) {
             }
         }
         if (min_idx > start) {
-            temp = items[start];
+            let temp = items[start];
             items[start] = items[min_idx];
             items[min_idx] = temp;
         }
